@@ -40,27 +40,43 @@ const Footer: React.FC = () => {
                     <div className="flex justify-center items-center flex-wrap gap-x-8 gap-y-6">
                         
                         <TechIcon title="React">
-                            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" role="img" aria-label="React logo"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/><ellipse cx="12" cy="12" rx="4.243" ry="1.732" transform="rotate(-60 12 12)"/><ellipse cx="12" cy="12" rx="1.732" ry="4.243" transform="rotate(-30 12 12)"/><circle cx="12" cy="12" r="1.5"/></svg>
+                            <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="React logo">
+                                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/>
+                                <ellipse transform="rotate(30 12 12)" cx="12" cy="12" rx="8" ry="3"/>
+                                <ellipse transform="rotate(90 12 12)" cx="12" cy="12" rx="8" ry="3"/>
+                                <ellipse transform="rotate(150 12 12)" cx="12" cy="12" rx="8" ry="3"/>
+                                <circle cx="12" cy="12" r="1.5"/>
+                            </svg>
                         </TechIcon>
                         
                         <TechIcon title="TypeScript">
-                            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" role="img" aria-label="TypeScript logo"><path d="M21 3H3v18h18V3zM12 17h-1.5v-5H9v-1.5h4.5V17zm3-4.5h-1.5V11H12v-1.5h3V11h-1.5v1.5z"/></svg>
+                            <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="TypeScript logo">
+                                <path d="M21.004 2.996H3v18h18V2.996zM13.5 17.5h-1.5v-7h-3v-1.5h7.5V12h-3v5.5z"/>
+                            </svg>
                         </TechIcon>
 
                         <TechIcon title="Node.js">
-                            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" role="img" aria-label="Node.js logo"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-1-11h-1v5h1v-5zm3 0h-1v5h1v-5z"/></svg>
+                            <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Node.js logo">
+                                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.36 14.81L15.3 12.2a.1.1 0 0 0-.15 0l-1.4 2.42a.1.1 0 0 1-.09.05h-3.4a.1.1 0 0 1-.09-.05L8.75 12.2a.1.1 0 0 0-.15 0l-3.06 4.61a.1.1 0 0 1-.08.05H4.2a.1.1 0 0 1-.08-.16l5.22-8.54a.1.1 0 0 1 .08-.05h1.23a.1.1 0 0 1 .09.05l2.45 4.24 3.75-6.5a.1.1 0 0 1 .09-.05h1.26a.1.1 0 0 1 .08.05l4.3 7.45a.1.1 0 0 1-.08.16h-1.2z"/>
+                            </svg>
                         </TechIcon>
 
                         <TechIcon title="Python">
-                           <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" role="img" aria-label="Python logo"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM11 15v-1c0-1.1.9-2 2-2h1.5v-1.5H13c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5h3v1.5h-3c-.28 0-.5.22-.5.5s.22.5.5.5h1.5v1.5H13c-1.1 0-2 .9-2 2v1h-1zm-1-5c0 .83-.67 1.5-1.5 1.5H7v-1.5h1.5c.28 0 .5-.22.5-.5s-.22-.5-.5-.5H7V7h1.5c.83 0 1.5.67 1.5 1.5v1.5z"/></svg>
+                           <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Python logo">
+                                <path d="M22 10.76v2.48c0 4.79-3.87 8.66-8.66 8.66H12v-3.46h1.34c2.86 0 5.19-2.33 5.19-5.19v-2.49c0-2.86-2.33-5.19-5.19-5.19H12V2h1.34C18.13 2 22 5.97 22 10.76zM12 11.47H8.53V10h3.47c.83 0 1.5-.67 1.5-1.5S12.83 7 12 7H8.53V2H2v8.76C2 15.55 5.87 22 10.66 22H12v-8.66h-1.34c-1.04 0-1.89-.85-1.89-1.89v-.01c0-1.03.85-1.87 1.89-1.87H12v1.9z"/>
+                            </svg>
                         </TechIcon>
 
                         <TechIcon title="Tailwind CSS">
-                            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" role="img" aria-label="Tailwind CSS logo"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-3.5-9.5c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm7 0c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                           <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Tailwind CSS logo">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-4.5-8.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm9 0c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                            </svg>
                         </TechIcon>
 
                         <TechIcon title="Google Gemini">
-                           <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" role="img" aria-label="Google Gemini logo"><path d="M12 2l2.5 6.5L22 10l-6.5 5.5L18 22l-6-4-6 4 2.5-6.5L2 10l7.5-1.5L12 2z"/></svg>
+                           <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Google Gemini logo">
+                                <path d="M12 2L9.5 8.5 2 10l6.5 5.5L6 22l6-4 6 4-2.5-6.5L22 10l-7.5-1.5L12 2zM12 5.47l1.32 4.08 4.29.85-3.1 2.8.73 4.2-3.24-2.1-3.24 2.1.73-4.2-3.1-2.8 4.29-.85L12 5.47z"/>
+                            </svg>
                         </TechIcon>
 
                     </div>

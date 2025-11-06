@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
                     Soluções em TI
                 </h2>
                 <p className="text-lg md:text-xl text-gray-200 mt-6 max-w-3xl mx-auto font-medium drop-shadow-md">
-                    Transformando ideias em soluções de software sob medida, da automação a aplicativos completos, com foco em performance e resultados.
+                    Transformando ideias em soluções de software sob medida. Alinhado com as principais tecnologias de inteligência artificial, entrego um rascunho do seu projeto em até 24 horas após o contato.
                 </p>
                 <div className="mt-10 flex flex-wrap justify-center gap-4">
                     <a href="#servicos" className="bg-secondary text-white px-8 py-3 rounded-lg font-medium text-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">

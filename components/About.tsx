@@ -24,6 +24,9 @@ const About: React.FC = () => {
                     <p className="text-gray-700 text-lg mb-4 leading-relaxed">
                         Minha missão é ir além do "software de prateleira". Busco entender a fundo o seu negócio para desenhar e construir soluções sob medida — sejam sistemas web, aplicativos ou automações — que realmente gerem valor e aumentem a produtividade.
                     </p>
+                    <p className="text-gray-700 text-lg mb-4 leading-relaxed">
+                        Sempre alinhado com as principais tecnologias de inteligência artificial, meu processo é ágil: após nosso primeiro contato, você recebe um rascunho do seu projeto em até 24 horas, garantindo clareza e velocidade desde o início.
+                    </p>
                     <p className="text-gray-700 text-lg leading-relaxed">
                         Se você precisa de um website, um sistema interno complexo, um app ou uma integração entre ferramentas, estou aqui para ser seu parceiro estratégico no desenvolvimento.
                     </p>
