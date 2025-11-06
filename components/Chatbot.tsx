@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenAI, Chat } from '@google/genai';
 
@@ -40,24 +39,23 @@ const Chatbot: React.FC = () => {
             // Initialize chat and send welcome message
             const initialBotMessage = {
                 sender: 'bot' as const,
-                text: "Olá! Sou o assistente virtual do Felipe. Vi que você chegou até o final da página. Como posso te ajudar a encontrar a solução de TI ideal para o seu negócio?"
+                text: "Olá! Sou o assistente virtual do Felipe. Para agilizar seu atendimento, preciso de apenas 3 informações. Vamos lá?"
             };
             setMessages([initialBotMessage]);
             
             try {
                 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
 
-                const systemInstruction = `Você é um assistente virtual para Felipe Gondim, um desenvolvedor de TI. Seu objetivo é ser amigável, prestativo e qualificar leads.
-                Sua tarefa é coletar três informações essenciais do cliente:
-                1. O nome do cliente.
-                2. O contato do cliente (email ou telefone).
-                3. Uma breve descrição do problema ou da necessidade do projeto.
+                const systemInstruction = `Você é um assistente virtual para Felipe Gondim, um desenvolvedor de TI. Seu objetivo é ser amigável, eficiente e qualificar leads com perguntas curtas e diretas.
                 
-                Seja conversacional. Não peça todas as informações de uma vez.
-                Quando tiver coletado TODAS as três informações, finalize a conversa com a frase EXATA: "[END_CONVERSATION]". 
-                Logo após a frase, inclua os dados coletados em um objeto JSON formatado da seguinte maneira:
-                {"name": "NOME_DO_CLIENTE", "contact": "CONTATO_DO_CLIENTE", "project": "DESCRIÇÃO_DO_PROJETO"}
-                Não inclua o JSON se não tiver todas as informações. Continue a conversa até obter tudo.`;
+                Siga este roteiro EXATAMENTE:
+                1. Após a mensagem inicial, pergunte o nome do cliente.
+                2. Ao receber o nome, agradeça e peça o melhor contato (e-mail ou telefone).
+                3. Ao receber o contato, peça uma breve descrição do projeto ou da necessidade.
+                4. Assim que tiver coletado TODAS as três informações (nome, contato, projeto), finalize a conversa com a frase EXATA: "[END_CONVERSATION]".
+                5. Logo após a frase, inclua os dados coletados em um objeto JSON formatado: {"name": "NOME_DO_CLIENTE", "contact": "CONTATO_DO_CLIENTE", "project": "DESCRIÇÃO_DO_PROJETO"}.
+                
+                Seja breve e faça uma pergunta por vez. Não desvie do roteiro.`;
                 
                 const newChat = ai.chats.create({
                     model: 'gemini-2.5-flash',
@@ -74,18 +72,39 @@ const Chatbot: React.FC = () => {
         }
     }, [isOpen]);
 
-    const saveToGoogleSheets = async (data: object) => {
-        console.log("Simulating save to Google Sheets:", data);
-        // In a real application, this function would make a POST request to a secure backend endpoint (e.g., a Google Cloud Function).
-        // This endpoint would then use the Google Sheets API with proper authentication to append a new row to the sheet.
-        // Example:
-        // await fetch('YOUR_BACKEND_ENDPOINT_URL', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify(data),
-        // });
-        return { success: true };
+    const sendLeadInfo = async (data: object) => {
+        const formspreeEndpoint = 'https://formspree.io/f/xldoqaey';
+
+        if (formspreeEndpoint.includes('COLE_SUA_URL_AQUI')) {
+            console.error("ERRO: O endpoint do Formspree ainda não foi configurado. Siga as instruções no código do arquivo components/Chatbot.tsx.");
+            return { success: false };
+        }
+
+        try {
+            const response = await fetch(formspreeEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                console.log("Lead enviado com sucesso para o Formspree.");
+                return { success: true };
+            } else {
+                const errorText = await response.text();
+                console.error("Falha ao enviar lead para o Formspree. Status:", response.status);
+                console.error("Resposta do servidor:", errorText);
+                return { success: false };
+            }
+        } catch (error) {
+            console.error("Ocorreu um erro de rede ao tentar enviar o lead:", error);
+            return { success: false };
+        }
     };
+
 
     const handleSendMessage = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -102,14 +121,26 @@ const Chatbot: React.FC = () => {
             
             if (botResponseText.includes("[END_CONVERSATION]")) {
                 const parts = botResponseText.split('[END_CONVERSATION]');
-                botResponseText = "Excelente! Registrei suas informações. O Felipe entrará em contato em breve para discutir os detalhes. Obrigado!";
+                botResponseText = "Perfeito! Suas informações foram enviadas para análise. O Felipe entrará em contato com você em breve. Muito obrigado!";
                 
                 try {
-                    const jsonDataString = parts[1].trim();
-                    const leadData = JSON.parse(jsonDataString);
-                    await saveToGoogleSheets(leadData);
+                    const responsePart = parts[1];
+                    // Regex to find the JSON object, robustly handling potential markdown fences (like ```json).
+                    const jsonMatch = responsePart.match(/{[\s\S]*}/);
+
+                    if (jsonMatch) {
+                        const jsonDataString = jsonMatch[0];
+                        const leadData = JSON.parse(jsonDataString);
+                        await sendLeadInfo(leadData);
+                    } else {
+                        // If no JSON object is found, throw an error to be caught below.
+                        throw new Error("Could not extract JSON object from the model's response.");
+                    }
                 } catch(parseError) {
                     console.error("Failed to parse lead data from Gemini response:", parseError);
+                     if (parts[1]) {
+                        console.error("Problematic response part:", parts[1]);
+                    }
                     botResponseText = "Consegui as informações que precisava! O Felipe entrará em contato em breve. Muito obrigado!";
                 }
             }
