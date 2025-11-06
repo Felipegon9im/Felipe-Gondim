@@ -7,7 +7,7 @@ const WhatsAppButton: React.FC = () => {
            href="https://api.whatsapp.com/send?phone=5548988628030" 
            target="_blank" 
            rel="noopener noreferrer"
-           className="fixed bottom-6 right-6 z-40 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-110"
+           className="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-110"
            aria-label="Entre em contato pelo WhatsApp"
         >
             <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 448 512" fill="currentColor">

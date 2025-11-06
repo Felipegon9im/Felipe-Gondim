@@ -7,6 +7,7 @@ import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import Chatbot from './components/Chatbot';
 
 const App: React.FC = () => {
     return (
@@ -19,7 +20,10 @@ const App: React.FC = () => {
                 <Contact />
             </main>
             <Footer />
-            <WhatsAppButton />
+            <div className="fixed bottom-6 right-6 z-40 flex items-center gap-4">
+                <Chatbot />
+                <WhatsAppButton />
+            </div>
         </>
     );
 };
